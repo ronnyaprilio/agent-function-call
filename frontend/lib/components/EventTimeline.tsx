@@ -10,14 +10,12 @@ const typeOrder: Record<string, number> = {
 };
 
 export default function EventTimeline({ events }: { events: EventItem[] }) {
-  // 1. sort global by time ASC dulu (biar urutan natural)
   const sorted = [...events].sort(
     (a, b) =>
       new Date(a.created_at).getTime() -
       new Date(b.created_at).getTime()
   );
 
-  // 2. split jadi "session blocks" berdasarkan user_message
   const blocks: EventItem[][] = [];
   let currentBlock: EventItem[] = [];
 
@@ -36,7 +34,6 @@ export default function EventTimeline({ events }: { events: EventItem[] }) {
     blocks.push(currentBlock);
   }
 
-  // 3. reverse blocks (DESC: request terbaru di atas)
   const reversedBlocks = blocks.reverse();
 
   return (

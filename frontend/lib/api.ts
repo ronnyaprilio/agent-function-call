@@ -165,13 +165,11 @@ function convertWordsToDigits(text: string): {converted: string; invalid?: strin
 export function normalizeExpression(expression: string): string {
   let normalized = expression.toLowerCase();
 
-  // remove common prompt phrases first
   normalized = normalized.replace(
     /\b(what is the result of|what is the|what's the|what is|what's|what|result of|calculate)\b/g,
     " "
   );
 
-  // normalize operator phrases
   const replacements: Array<{ pattern: RegExp; replace: string }> = [
     { pattern: /\band add it by\b/g, replace: " + " },
     { pattern: /\band add by\b/g, replace: " + " },
@@ -203,7 +201,6 @@ export function normalizeExpression(expression: string): string {
     normalized = normalized.replace(pattern, replace);
   }
 
-  // remove filler words after phrase replacements
   normalized = normalized.replace(/\b(it|by|the|a|an|please|pls|is|of)\b/g, " ");
 
   normalized = normalized.replace(/\?/g, " ");
@@ -413,7 +410,7 @@ async function simulateAgent(session: Session, userMessage: string): Promise<Ses
   } else if (
     lower.includes("calculate") ||
     /\d/.test(lower) ||
-    containsNumberWords(lower) // 🔥 FIX DI SINI
+    containsNumberWords(lower)
   ) {
     const expression = userMessage.replace(/calculate/i, "").trim() || "0";
     const args = { expression };
