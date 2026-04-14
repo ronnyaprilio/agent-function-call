@@ -2,11 +2,11 @@
 import { EventItem } from "../types";
 
 const typeOrder: Record<string, number> = {
-  user_message: 0,
-  agent_thought: 1,
+  user_message: 4,
+  agent_thought: 3,
   tool_call: 2,
-  tool_result: 3,
-  assistant_message: 4,
+  tool_result: 1,
+  assistant_message: 0,
 };
 
 export default function EventTimeline({ events }: { events: EventItem[] }) {
@@ -41,7 +41,7 @@ export default function EventTimeline({ events }: { events: EventItem[] }) {
 
   return (
     <div className="card">
-      <h2>Simulation Timeline</h2>
+      <h2>Simulation Timeline (Rule-Based Demo, scalable to local and API LLMs)</h2>
 
       <div style={{ marginTop: 16 }}>
         {reversedBlocks.map((block, i) => {

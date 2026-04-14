@@ -67,9 +67,18 @@ export default function HomePage() {
       </aside>
 
       <main className="main">
-        <ChatWindow session={selectedSession} onSend={handleSend} />
-        <div style={{ height: 16 }} />
-        {loading ? <div>Loading...</div> : <EventTimeline events={selectedSession?.events || []} />}
+        {!selectedSession ? (
+          <div className="empty-state">
+            <h2>No session selected</h2>
+            <p>Click "New Session" first to start a simulation.</p>
+          </div>
+        ) : (
+          <>
+            <ChatWindow session={selectedSession} onSend={handleSend} />
+            <div style={{ height: 16 }} />
+            {loading ? <div>Loading...</div> : <EventTimeline events={selectedSession.events} />}
+          </>
+        )}
       </main>
     </div>
   );

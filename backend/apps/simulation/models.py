@@ -1,31 +1,27 @@
+﻿from dataclasses import dataclass, field
 from datetime import datetime
-import mongoengine as me
+from typing import Any, Dict, List
 
-class ToolCall(me.EmbeddedDocument):
-    tool_name = me.StringField(required=True)
-    arguments = me.DictField(required=True)
-    result = me.DictField(default=dict)
-    status = me.StringField(required=True, choices=["pending", "success", "error"])
-    created_at = me.DateTimeField(default=datetime.utcnow)
+@dataclass
+class ToolCall:
+    tool_name: str
+    arguments: Dict[str, Any]
+    result: Dict[str, Any]
+    status: str
+    created_at: datetime = field(default_factory=datetime.utcnow)
 
-class Event(me.EmbeddedDocument):
-    type = me.StringField(
-        required=True,
-        choices=["user_message", "agent_thought", "tool_call", "tool_result", "assistant_message"]
-    )
-    content = me.StringField()
-    metadata = me.DictField(default=dict)
-    created_at = me.DateTimeField(default=datetime.utcnow)
+@dataclass
+class Event:
+    type: str
+    content: str
+    metadata: Dict[str, Any] = field(default_factory=dict)
+    created_at: datetime = field(default_factory=datetime.utcnow)
 
-class Session(me.Document):
-    session_id = me.StringField(required=True, unique=True)
-    title = me.StringField(default="New Session")
-    events = me.EmbeddedDocumentListField(Event)
-    tool_calls = me.EmbeddedDocumentListField(ToolCall)
-    created_at = me.DateTimeField(default=datetime.utcnow)
-    updated_at = me.DateTimeField(default=datetime.utcnow)
-
-    meta = {
-        "collection": "sessions",
-        "indexes": ["session_id", "-updated_at"]
-    }
+@dataclass
+class Session:
+    session_id: str
+    title: str = "New Session"
+    events: List[Event] = field(default_factory=list)
+    tool_calls: List[ToolCall] = field(default_factory=list)
+    created_at: datetime = field(default_factory=datetime.utcnow)
+    updated_at: datetime = field(default_factory=datetime.utcnow)
