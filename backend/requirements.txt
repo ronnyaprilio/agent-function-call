@@ -1,8 +1,6 @@
 Django==6.0.4
 djangorestframework==3.17.1
 django-cors-headers==4.9.0
-mongoengine==0.29.3
-pymongo==4.16.0
 python-dotenv==1.2.2
 gunicorn==25.3.0
 whitenoise==6.12.0

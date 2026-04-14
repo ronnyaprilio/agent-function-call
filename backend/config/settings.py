@@ -1,7 +1,6 @@
-import os
+﻿import os
 from pathlib import Path
 from dotenv import load_dotenv
-from mongoengine import connect
 
 load_dotenv()
 
@@ -67,7 +66,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
 
-MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017/agent_sim")
-connect(host=MONGODB_URI)
+
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

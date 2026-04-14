@@ -26,7 +26,7 @@ export default function ChatWindow({ session, onSend }: Props) {
   return (
     <div className="card">
       <h1>Agent Function Call Simulation</h1>
-      <p>Try: "weather in london" or "calculate 2 + 2 * 3"</p>
+      <p>Demo version. Try: "What is the weather in London?" or "calculate 2 + 2 * 3" or "what is the result of 89 times 76 and divide it by 8"</p>
 
       <div style={{ marginTop: 16 }}>
         {session ? (

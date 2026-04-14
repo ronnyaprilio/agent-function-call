@@ -1,0 +1,23 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Agent Core -->
+  <circle cx="64" cy="64" r="20" stroke="#4F46E5" stroke-width="3" fill="#EEF2FF"/>
+
+  <!-- Left Tool -->
+  <rect x="12" y="48" width="20" height="20" rx="4" stroke="#10B981" stroke-width="3" fill="#ECFDF5"/>
+  
+  <!-- Right Tool -->
+  <rect x="96" y="48" width="20" height="20" rx="4" stroke="#F59E0B" stroke-width="3" fill="#FFFBEB"/>
+
+  <!-- Top Tool -->
+  <rect x="54" y="10" width="20" height="20" rx="4" stroke="#EF4444" stroke-width="3" fill="#FEF2F2"/>
+
+  <!-- Arrows -->
+  <path d="M44 64 L32 64" stroke="#4F46E5" stroke-width="2"/>
+  <path d="M84 64 L96 64" stroke="#4F46E5" stroke-width="2"/>
+  <path d="M64 44 L64 30" stroke="#4F46E5" stroke-width="2"/>
+
+  <!-- Arrow heads -->
+  <polygon points="32,64 36,61 36,67" fill="#4F46E5"/>
+  <polygon points="96,64 92,61 92,67" fill="#4F46E5"/>
+  <polygon points="64,30 61,34 67,34" fill="#4F46E5"/>
+</svg>
