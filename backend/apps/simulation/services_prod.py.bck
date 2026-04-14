@@ -1,0 +1,29 @@
+import ast
+import operator as op
+
+_ALLOWED_OPERATORS = {
+    ast.Add: op.add,
+    ast.Sub: op.sub,
+    ast.Mult: op.mul,
+    ast.Div: op.truediv,
+    ast.Pow: op.pow,
+    ast.USub: op.neg,
+}
+
+def safe_eval(node):
+    if isinstance(node, ast.Num):
+        return node.n
+    elif isinstance(node, ast.BinOp):
+        return _ALLOWED_OPERATORS[type(node.op)](safe_eval(node.left), safe_eval(node.right))
+    elif isinstance(node, ast.UnaryOp):
+        return _ALLOWED_OPERATORS[type(node.op)](safe_eval(node.operand))
+    raise TypeError("Unsupported expression")
+
+def calculator_tool(arguments: dict) -> dict:
+    expression = arguments.get("expression", "0")
+    try:
+        parsed = ast.parse(expression, mode='eval').body
+        result = safe_eval(parsed)
+        return {"expression": expression, "result": result}
+    except Exception as e:
+        return {"expression": expression, "error": str(e)}

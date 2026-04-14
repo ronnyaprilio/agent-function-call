@@ -1,0 +1,57 @@
+# Node
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/build/
+/frontend/dist/
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/package-lock.json
+/frontend/.env
+
+# Next.js
+/frontend/.turbo/
+/frontend/.env.local
+/frontend/.env.development
+/frontend/.env.test
+/frontend/.env.production
+
+# Python
+/backend/__pycache__/
+/backend/*.py[cod]
+/backend/*.pyo
+/backend*.pyc
+/backend/.Python
+/backend/env/
+/backend/venv/
+/backend/.venv/
+/backend/ENV/
+/backend/venv.bak/
+/backend/env.bak/
+/backend/.mypy_cache/
+/backend/.pytest_cache/
+/backend/.ruff_cache/
+/backend/.coverage
+/backend/coverage.xml
+/backend/htmlcov/
+/backend/dist/
+/backend/build/
+/backend/venv/
+/backend/instance/
+/backend/.env
+
+# General
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+.env

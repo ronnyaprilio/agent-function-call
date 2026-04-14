@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: agent-sim-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: agent-sim-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.example
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    container_name: agent-sim-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
